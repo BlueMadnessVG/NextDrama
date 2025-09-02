@@ -1,7 +1,8 @@
 import DetailsCard from "@/components/DetailsCard";
 import DetailsInfo from "@/components/DetailsInfo";
 import ReturnButton from "@/components/ReturnButton";
-import { images } from "@/constants/images";
+import { useGetSeriesDetails } from "@/hooks/useGetSeriesDetails";
+import { useLocalSearchParams } from "expo-router";
 import { FlatList, View } from "react-native";
 
 /**
@@ -58,47 +59,41 @@ import { FlatList, View } from "react-native";
  * @returns {JSX.Element} The movie detail screen UI with header information and a list of episodes.
  */
 
-const Movies = [
-  {
-    id: "1",
-    title: "Movie 1",
-    time: "1h 30m",
-    imageSource: images.details,
-  },
-  {
-    id: "2",
-    title: "Movie 2",
-    time: "2h 15m",
-    imageSource: images.details,
-  },
-  {
-    id: "3",
-    title: "Movie 3",
-    time: "1h 45m",
-    imageSource: images.details,
-  },
-  {
-    id: "4",
-    title: "Movie 4",
-    time: "2h 00m",
-    imageSource: images.details,
-  },
-];
-
 export default function MovieDetails() {
+  const { id } = useLocalSearchParams();
+  const { loading, data } = useGetSeriesDetails({
+    id: typeof id === "string" ? id : Array.isArray(id) ? id[0] : "",
+  });
+
+  if (loading) {
+    console.log("Loading...");
+    return null;
+  }
+
+  if (!data) {
+    console.log("No data found.");
+    return null;
+  }
+
   return (
     <View className="flex-1 bg-bg_main">
       <FlatList
-        data={Movies}
-        keyExtractor={(item) => item.id}
+        data={data.chapters}
+        keyExtractor={(item) => String(item.id)}
         ListHeaderComponent={
-          <DetailsInfo />
+          <DetailsInfo
+            title={data.title}
+            year={new Date(data.relase_date).getFullYear()}
+            poster_path={data.poster_path}
+            status={data.status}
+            overview={data.overview}
+          />
         }
         renderItem={({ item }) => (
           <DetailsCard
             title={item.title}
-            imageSource={item.imageSource}
-            time={item.time}
+            imageSource={item.poster_path}
+            time={Math.round(item.overall_time / 60)}
           />
         )}
         contentContainerStyle={{ paddingBottom: 80 }}

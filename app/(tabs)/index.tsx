@@ -1,6 +1,6 @@
-import MovieList from "@/components/MovieList";
+import GenderListView from "@/components/GenderListView";
 import Trending from "@/components/Trending";
-import { images } from "@/constants/images";
+import { useGetFeaturedSeries } from "@/hooks/useGetFeaturedSeries";
 import { ScrollView, View } from "react-native";
 
 /**
@@ -44,18 +44,25 @@ import { ScrollView, View } from "react-native";
  */
 
 export default function Index() {
-  return (
-    <View className="flex-1 bg-bg_main">
-      <ScrollView
-        className="flex-1"
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 10, minHeight: "100%" }}
-      >
-        <Trending imageSource={images.cover} title="PERSONA 5 ROYAL" />
+  const { loading, data } = useGetFeaturedSeries();
 
-        <MovieList />
-        <MovieList />
-      </ScrollView>
-    </View>
-  );
+  if (loading) {
+    console.log("Loading...");
+  } else {
+    return (
+      <View className="flex-1 bg-bg_main">
+        <ScrollView
+          className="flex-1"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 10, minHeight: "100%" }}
+        >
+          <Trending featuredSeries={{ series: data[0] }} />
+
+
+          <GenderListView />
+
+        </ScrollView>
+      </View>
+    );
+  }
 }

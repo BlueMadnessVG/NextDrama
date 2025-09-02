@@ -1,25 +1,39 @@
 import { icons } from "@/constants/icons";
-import { images } from "@/constants/images";
 import { Image, Pressable, Text, View } from "react-native";
 
-export default function DetailsInfo() {
+interface DetailsInfoProps {
+  title: string;
+  year: number;
+  poster_path: string;
+  status: string;
+  overview: string;
+}
+
+export default function DetailsInfo({
+  title,
+  year,
+  poster_path,
+  status,
+  overview,
+}: DetailsInfoProps) {
+  console.log(year)
   return (
     <>
       <View>
         <Image
-          source={images.details}
+          source={{ uri: poster_path }}
           className="w-full h-[240px]"
           resizeMode="stretch"
         />
       </View>
       <View className="flex-col items-start justify-center mt-5 px-2">
         <Text className="text-text_main font-bold text-3xl">
-          Beyond the Bar
+          {title}
         </Text>
         <View className="flex-row items-center gap-x-2 mt-2">
-          <Text className="text-text_din">2023</Text>
+          <Text className="text-text_din">{year}</Text>
           <Text className="text-text_din bg-bg_highlight py-1 px-2 rounded-lg">
-            TV-MA
+            {status}
           </Text>
           <Text className="text-text_din">16+</Text>
         </View>
@@ -30,9 +44,7 @@ export default function DetailsInfo() {
           </Pressable>
         </View>
         <Text className="text-text_main mt-2 text-justify px-1">
-          Guided by a tough mentor, a new lawyer navigates a cutthroat legal
-          world where no two cases are alike in this drama that reached Top 10
-          in 51 countries.
+          {overview}
         </Text>
         <Text className="text-2xl text-text_main font-extrabold px-1 mt-4">
           Episodes

@@ -1,46 +1,37 @@
-interface Movie {
-   id: number;
-   title: string;
-   backdrop_path: string;
-   genre_ids: number[];
-   original_title: string;
-   overview: string;
-   poster_path: string;
-   video: boolean; 
+export interface Genre {
+  name: string;
 }
 
-interface TrendingMovie {
-    searchTerm: string;
-    movie_id: number;
-    title: string;
-    count: number;
-    poster_url: string;
+export interface Chapter {
+  id: number;
+  title: string;
+  overall_time: number;
+  poster_path: string;
 }
 
-interface MovieDetails {
-    backdrop_path: string | null;
-    belong_to_collection: {
-        id: number;
-        name: string;
-        poster_path: string;
-        backdrop_path: string;
-    } | null;
-    genres: {
-        id: number;
-        name: string;
-    }[];
-    homepage: string | null;
+export interface Series {
+  id: number;
+  title: string;
+  poster_path: string;
+  genres: Genre[];
+}
+export interface SeriesDetails {
+  id: number;
+  poster_path: string;
+  relase_date: string;
+  overview: string;
+  status: string;
+  title: string;
+  chapters: Chapter[];
+  trailer: boolean;
+}
+
+export interface GenderList {
     id: number;
-    poster_path: string;
-    release_date: string;
-    runtime: number | null;
-    status: string;
-    tagline: string | null;
-    title: string;
-    video: boolean;
+    name: string;
+    series: Series[];
 }
 
-interface TrendingCardProps {
-    movie: TrendingMovie;
-    index: number;
+export interface FeaturedSeries {
+  series: Series;
 }

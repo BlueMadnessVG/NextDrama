@@ -1,50 +1,78 @@
-# Welcome to your Expo app 👋
+# NextDrama 🎬
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A cross-platform drama/movie discovery app built with [Expo](https://expo.dev), [React Native](https://reactnative.dev), [expo-router](https://expo.github.io/router/docs/), and [NativeWind](https://www.nativewind.dev/) (Tailwind CSS for React Native).
 
-## Get started
+## Features
 
-1. Install dependencies
+- Browse trending dramas and movies
+- View detailed info and episodes for each series
+- Custom bottom tab navigation
+- Responsive UI with Tailwind-like styling
+- Fast navigation using expo-router
+- Modular component structure
+
+## Getting Started
+
+1. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. **Start the app**
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+   You can open the app in:
+   - [Expo Go](https://expo.dev/go)
+   - Android emulator
+   - iOS simulator
+   - Web browser
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **app/**  
+  Main app screens and file-based routing.
+- **components/**  
+  Reusable UI components (e.g. TabsButton, Trending, DetailsCard).
+- **constants/**  
+  Asset and icon definitions.
+- **tailwind.config.js**  
+  Tailwind/NativeWind configuration.
 
-## Get a fresh project
+## Styling
 
-When you're ready, run:
+This project uses [NativeWind](https://www.nativewind.dev/) for Tailwind CSS utility classes in React Native.  
+Make sure your `tailwind.config.js` includes both `app` and `components` folders:
 
-```bash
-npm run reset-project
+```js
+content: [
+  "./app/**/*.{js,jsx,ts,tsx}",
+  "./components/**/*.{js,jsx,ts,tsx}"
+]
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Development Tips
 
-## Learn more
+- Use file-based routing for screens in `app/`
+- Keep components modular and reusable
+- Avoid nesting FlatList inside ScrollView (see React Native docs)
+- Use the custom tab bar for navigation
 
-To learn more about developing your project with Expo, look at the following resources:
+## Learn More
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- [Expo documentation](https://docs.expo.dev/)
+- [NativeWind documentation](https://www.nativewind.dev/)
+- [expo-router documentation](https://expo.github.io/router/docs/)
 
-## Join the community
+## Community
 
-Join our community of developers creating universal apps.
+- [Expo on GitHub](https://github.com/expo/expo)
+- [NativeWind on GitHub](https://github.com/marklawlor/nativewind)
+- [Expo Discord](https://chat.expo.dev)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+Made with ❤️ for drama
